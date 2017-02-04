@@ -1,0 +1,41 @@
+<html>
+
+<body>
+	Name: <input type="text" id="name"><br>
+	Date: <input type="date" id="date"><br>
+	Oral Temperature: <input type="number" id="oral"><br>
+	YONO Basal Body Temperature: <input type="number" id="yono"><br>
+	Ovulation Test Result:
+	<select id="ovulation">
+	  <option value="yes">Ovulating</option>
+	  <option value="no">Not Ovulating</option>
+	</select>
+	<br>
+	Start of Period: <input type="date" id="period"><br>
+	Heart Rate: <input type="number" id="hr"><br>
+	<button type="submit" onclick="putInDB()" value="Submit">Submit</button>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	function putInDB(){
+		var url = "http://murphy.wot.eecs.northwestern.edu/~jrp338/SQLGateway_ONCO.py";
+		
+		$.post(url,
+			{
+				name: document.getElementById("name").value,
+				date: document.getElementById("date").value,
+				oral: document.getElementById("oral").value,
+				yono: document.getElementById("yono").value,
+				ovulation: document.getElementById("ovulation").value,
+				period: document.getElementById("period").value,
+				hr: document.getElementById("hr").value
+			},
+			function(data, status){
+				alert("put into db");
+			}
+		);
+	}
+</script>
+
+</html>
