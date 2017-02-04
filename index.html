@@ -14,13 +14,14 @@
 	Start of Period: <input type="date" id="period"><br>
 	Heart Rate: <input type="number" id="hr"><br>
 	<button type="submit" onclick="putInDB()" value="Submit">Submit</button>
+	<div id="result"></div>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	function putInDB(){
 		var url = "http://murphy.wot.eecs.northwestern.edu/~jrp338/SQLGateway_ONCO.py";
-		
+
 		$.post(url,
 			{
 				name: document.getElementById("name").value,
@@ -30,11 +31,8 @@
 				ovulation: document.getElementById("ovulation").value,
 				period: document.getElementById("period").value,
 				hr: document.getElementById("hr").value
-			},
-			function(data, status){
-				alert("put into db");
-			}
-		);
+			});
+		document.getElementById("result").innerHTML = "Thank you! We've received your results."
 	}
 </script>
 
